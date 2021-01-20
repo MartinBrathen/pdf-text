@@ -1,0 +1,15 @@
+{
+  "name": "pdf-to-string",
+  "version": "1.0.0",
+  "description": "Outputs text from pdf as string",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Martin Bråthen",
+  "license": "MIT",
+  "dependencies": {
+    "pdfjs-dist": "^2.5.207"
+  }
+}
