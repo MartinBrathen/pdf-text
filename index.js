@@ -5,7 +5,7 @@ const pdfjs = require('pdfjs-dist/es5/build/pdf.js')
  * Can be the same as for {@link https://github.com/mozilla/pdf.js/blob/a10dc1cb6e24b83d1b713e3fd3dc9a44788541d1/src/display/api.js#L207 pdfjs.getDocument(srs)} but also supports Buffer.
  * @returns {Promise<Array<Array<string>>>} Promise of text content of pdf as 2D array of strings, where each second level arrays represents a page of the pdf.
  */
-async function pdfToArray2D(pdf){
+async function asArray2D(pdf){
 
     return pdfjs.getDocument(pdf).promise.then(function (doc) {
         var promises = [];
@@ -27,9 +27,9 @@ async function pdfToArray2D(pdf){
  * Can be the same as for {@link https://github.com/mozilla/pdf.js/blob/a10dc1cb6e24b83d1b713e3fd3dc9a44788541d1/src/display/api.js#L207 pdfjs.getDocument(srs)} but also supports Buffer.
  * @returns {Promise<Array<string>>} Promise of text content of pdf flat array of strings.
  */
-async function pdfToArray(pdf){
+async function asArray(pdf){
 
-    return pdfToArray2D(pdf).then((res) => {
+    return asArray2D(pdf).then((res) => {
         return res.flat()
     });
 }
@@ -41,15 +41,15 @@ async function pdfToArray(pdf){
  * @param {string} textJoinString - Optional string to be used by join method between pages. Default is newline.
  * @returns {Promise<string>} Promise of text content of pdf as string.
  */
-async function pdfToString(pdf, textJoinString = '\n', pageJoinString = '\n'){
+async function asString(pdf, textJoinString = '\n', pageJoinString = '\n'){
 
-    return pdfToArray2D(pdf).then((res) => {
+    return asArray2D(pdf).then((res) => {
         return res.map((page).join(pageJoinString)).join(textJoinString);
     });
 }
 
 module.exports = {
-    asString: pdfToString,
-    asArray2D: pdfToArray2D,
-    asArray: pdfToArray
+    asString,
+    asArray2D,
+    asArray
 }
