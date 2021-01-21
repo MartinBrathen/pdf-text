@@ -1,2 +1,2 @@
-# pdf-to-string
+# pdf-text
 Converting PDF to text
